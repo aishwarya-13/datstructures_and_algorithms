@@ -1,12 +1,11 @@
 /**
- * https://leetcode.com/problems/find-peak-element/description/
+ * https://leetcode.com/problems/find-peak-element/description/ - THis is peak element in an array
  * and
- * https://leetcode.com/problems/peak-index-in-a-mountain-array/description/
+ * https://leetcode.com/problems/peak-index-in-a-mountain-array/description/ - This is peak element in a mountain array
  */
 
 /**
- * @param {number[]} nums
- * @return {number}
+  Note peak element problem in leetcode is different and peak in mountain array problem is different
  */
 var findPeakElement = function(arr) {
   let left = 0,
