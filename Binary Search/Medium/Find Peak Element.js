@@ -1,5 +1,7 @@
 /**
  * https://leetcode.com/problems/find-peak-element/description/
+ * and
+ * https://leetcode.com/problems/peak-index-in-a-mountain-array/description/
  */
 
 /**
