@@ -3,6 +3,7 @@
  */
 
 /**
+ * Pattern: Arrays and Hashing
     solution: https://www.youtube.com/watch?v=P6RZZMu_maU&t=394s
  */
     var longestConsecutive = function(nums) {
