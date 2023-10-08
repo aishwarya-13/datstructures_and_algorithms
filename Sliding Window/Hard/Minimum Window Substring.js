@@ -48,5 +48,5 @@
 };
 
 /**
- * Footnote: Find all anagrams, Permutation in a string and Min Window substring are all same
+ * Footnote: Find all anagrams, Permutation in a string and Min Window substring have similar solution
  */

@@ -57,3 +57,7 @@ var checkInclusion = function(pattern, str) {
   }
   return false;
 };
+
+/**
+ * Footnote: Find all anagrams, Permutation in a string and Min Window substring have similar solution
+ */

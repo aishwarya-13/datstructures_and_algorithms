@@ -43,3 +43,7 @@
       }
       return result;
   };
+
+/**
+ * Footnote: Find all anagrams, Permutation in a string and Min Window substring have similar solution
+ */
