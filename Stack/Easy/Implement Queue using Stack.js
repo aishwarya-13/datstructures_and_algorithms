@@ -10,6 +10,12 @@
 We have to solve this question only using push(), pop() and length methods.
 For peek we cannot use this.queue[0] because this is a array operation and in stack there are only two methods push() and pop()
  */
+
+/**
+ * Time: When output is empty pop will take O(N) But when it is filled it takes O(1) most of the time
+ * This is Amortized O(1) -> Sometimes O(N) but most of time O(1)
+ * This is important for interview
+ */
 var MyQueue = function() {
   this.input = []
   this.output = []
