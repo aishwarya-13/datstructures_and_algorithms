@@ -3,6 +3,36 @@
  */
 
 /**
+ * Without using mapLen
+ */
+
+ var totalFruit = function(fruits) {
+    let map = {},
+        k=2,//baskets
+        start = 0,
+        result = 0;
+    for(let end=0; end<fruits.length; end++){
+        const type = fruits[end]
+        if(map[type] === undefined){
+            map[type] = 0
+            k--
+        }
+        map[type]++
+        while(k < 0){
+            map[fruits[start]]--
+            if(map[fruits[start]] === 0){
+                delete map[fruits[start]]
+                k++
+            }
+            start++
+        }
+        result = Math.max(result, (end - start + 1))
+    }
+    return result
+};
+
+
+/**
  Code and problem statement is same as https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/description/
  Only difference here is k =2
  Time: Outer for loop runs for O(N) time. Inner while loop processes each element only once (it will remove the element from start position)
