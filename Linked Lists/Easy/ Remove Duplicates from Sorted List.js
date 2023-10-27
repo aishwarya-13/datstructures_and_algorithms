@@ -10,6 +10,8 @@
   */
 /**
 Without extra pointers
+1] If current nodes val is equal to next nodes val then just link the current node to its next nodes next node
+2] Else just move the node ahead
 Time: O(N)
 Space: O(1)
 **/
