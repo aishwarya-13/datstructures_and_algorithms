@@ -3,6 +3,32 @@
  */
 
 /**
+Use single pointer curr
+If current node's next val is the val to be removed then point current's next node its next nodes next
+
+Removing the element means we will be creating new linkages
+
+**/
+var removeElements = function(head, val) {
+    if(!head){
+        return head
+    }
+    //If first nodes contain the val to be removed
+    while(head && head.val === val){
+        head = head.next
+    }
+    let curr = head;
+    while(curr && curr.next){
+        if(curr.next.val === val){
+            curr.next = curr.next.next
+        }else{
+            curr = curr.next
+        }
+    }
+    return head;
+};
+
+/**
 Use two pointers
 1]If list is empty simply return null.
 2]If nodes to be removed are present at the start of the list then simply update the head to it's next.
