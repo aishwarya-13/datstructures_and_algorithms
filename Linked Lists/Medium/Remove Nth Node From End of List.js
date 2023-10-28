@@ -2,6 +2,33 @@
  * https://leetcode.com/problems/remove-nth-node-from-end-of-list/
  */
 
+/**
+ * Using counters
+ */
+var removeNthFromEnd = function(head, n) {
+    let length = 0,
+        node = head;
+    while(node){
+        length++
+        node = node.next
+    }
+    let nodeToBeRemoved = length - n,
+        count = 1
+    node = head;
+    //Edge case: If first node is to be removed
+    if(nodeToBeRemoved === 0){
+        head = head.next
+    }
+    while(node){
+        if(count === nodeToBeRemoved){
+            node.next = node.next ? node.next.next : null
+            break
+        }
+        count++
+        node = node.next
+    }
+    return head;
+};
 
 /**
 This solution uses two pointers to traverse the linked list. 
