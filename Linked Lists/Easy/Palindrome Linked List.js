@@ -11,34 +11,40 @@ Reverse second half of linked list and compare first half and second half
 3]Compare first half and second half for palindrome test
 **/
 var isPalindrome = function(head) {
-    //1]Find midpoint of the linked list
-    //In case of two middle nodes get the second middle node
+    //1] Get middle of LL
     let slow = head,
         fast = head;
     while(fast && fast.next){
-        slow = slow.next;
-        fast = fast.next.next;
+        slow = slow.next
+        fast = fast.next.next
     }
+    console.log('mid', slow)
+    //2] Reverse second half
     let prev = null,
-        curr = slow;
-    //2]Reverse the linked list from middle to end
+        curr = slow
     while(curr){
-        let saveNext = curr.next;
-        curr.next = prev;
-        prev = curr;
-        curr = saveNext;
+        let saveNext = curr.next
+        curr.next = prev
+        prev = curr
+        curr = saveNext
     }
-    //Place pointer at start of first half and end of second half and compare for plaindrome
-    //1->2            //2->1
-    //^front          //^back
-    let front = head,
-        back = prev;
-    while(back){
-        if(front.val !== back.val){
-            return false;
+    console.log('reverse second half', prev)
+    console.log('head', head)
+    /**
+        mid [2,1]
+        reverse second half [1,2]
+        head [1,2,2]
+     */
+    //3]Compare 1st half and 2nd half
+    let first = head,
+        second = prev;
+    while(second){
+        if(first.val !== second.val){
+            return false
         }
-        front = front.next;
-        back = back.next;
+        first = first.next
+        second = second.next
     }
-    return true;
+    return true
 };
+
