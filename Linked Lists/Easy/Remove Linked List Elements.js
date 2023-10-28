@@ -10,6 +10,8 @@ Use two pointers
 When curr equals to val then link curr's next to prev's next and update curr to point to new prev'next.
 
 Removing the element means we will be creating new linkages
+/Mistakes
+Do not move prev ahead if new linkage is made (just point the curr to prevs next)
 **/
 var removeElements = function(head, val) {
     if(!head){
