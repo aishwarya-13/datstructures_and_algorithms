@@ -13,19 +13,16 @@ var deleteDuplicates = function(head) {
     let prev = null,
         curr = head;
     while(curr){
-        if(curr.next && curr.val === curr.next.val){
-           while(curr.next && curr.val === curr.next.val){
-                curr = curr.next;
+        if(curr && curr.next && curr.val === curr.next.val){
+            while(curr && curr.next && curr.val === curr.next.val){
+            curr = curr.next
             }
-            if(prev !== null){
-                prev.next = curr.next;
-            }else{
-                head = curr.next;
-            }
+            //If head is to be removed ex: 1->1->2->3->null then prev is going to be its initial val = null
+            prev !== null ? prev.next = curr.next : head = curr.next
         }else{
-            prev = curr;
+            prev = curr
         }
-        curr = curr.next;
+        curr = curr.next
     }
     return head;
 };
