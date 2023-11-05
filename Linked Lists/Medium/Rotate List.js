@@ -15,32 +15,32 @@ i) When k > length of list --->shorten the k by k%len
 ii)When k === length of list. In this case the number of rotations will result the original list so return head as is.
 **/
 var rotateRight = function(head, k) {
-    if(!head || !head.next){
-        return head;
+    if(!head || !head.next || k === 0){
+        return head
     }
-    //Calculate length and last node
-    let len = 1,
-        lastNode = head;
-    while(lastNode.next){
-        lastNode = lastNode.next;
-        len++;
+    let len = 0,
+        node = head,
+        lastNode = null;//to connect lastNode to original head
+    while(node){
+        len++
+        lastNode = node
+        node = node.next
     }
-    //Compute k (if k is > len then we need to take %)
-    k%=len;
-    // If k is 0, the list remains the same, so return the head
+    k = k % len // If k is >len then shorten it
     if(k === 0){
-        return head;
+        return head
     }
-    //Find new tail and head node
-    let newTail = head;
-    for(let i=1; i<len - k; i++){
-        newTail = newTail.next;
+    node = head; //to iterate LL
+    for(let i=1; i<len-k; i++){
+        node = node.next
     }
-    //Find new head
-    let newHead = newTail.next;
-    //Disconnect newTail
-    newTail.next = null;
+    //save up newHead and newTail
+    let newHead = node.next
+    let newTail = node
     //connect last node to original head
-    lastNode.next = head;
-    return newHead;
+    lastNode.next = head
+    //disconnect newTail
+    newTail.next = null
+    //return new head
+    return newHead
 };
