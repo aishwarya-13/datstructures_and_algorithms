@@ -10,7 +10,7 @@
  */
 
 var reorderList = function(head) {
-    //1]Get middle of LL
+    //1]Get middle of LL - -> For even LL get second middle node
     let slow = head,
         fast = head;
     while(fast && fast.next){
