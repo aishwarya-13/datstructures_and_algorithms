@@ -11,24 +11,20 @@ odd's next will point to even node.
 **/
 var oddEvenList = function(head) {
     if(!head || !head.next){
-        return head;
+        return head
     }
     let odd = head,
         even = head.next,
-        evenHead = even;//even pointer will reach the end so we need to save even in a separate variable to make connection between odd and even
+        evenHead = head.next;//save start of even LL to make connection to odd LL
     while(even && even.next){
         odd.next = even.next;
-        odd = odd.next;
-        even.next = odd.next;
-        even = even.next;
-        //OR
-        // odd.next = even.next;
-        // even.next = even.next.next;
-        // even = even.next;
-        // odd = odd.next;
+        even.next= even.next.next
+        //move pointers ahead
+        even = even.next
+        odd = odd.next
     }
-    odd.next = evenHead;
-    return head;
+    odd.next = evenHead;//connect odd LL to even LL
+    return head
 };
 
 /**
