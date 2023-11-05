@@ -14,21 +14,22 @@ Just copy the nodes into their respective pointers. No need to create new nodes
 **/
 var partition = function(head, x) {
     let less = new ListNode(-1),
-        p1 = less,
         greater = new ListNode(-1),
-        p2 = greater,
-        node = head;
+        l = less,//pointer for less LL
+        g = greater,//pointer for greater LL
+        node = head;//pointer for head
+    
     while(node){
         if(node.val < x){
-            p1.next = node;
-            p1 = p1.next;
+            l.next = node;
+            l = l.next
         }else{
-            p2.next = node;
-            p2 = p2.next;
+            g.next = node;
+            g = g.next
         }
-        node = node.next;
+        node = node.next
     }
-    p1.next = greater.next;
-    p2.next = null;
-    return less.next;
+    g.next = null
+    l.next = greater.next//merge less and greater LLs
+    return less.next
 };
