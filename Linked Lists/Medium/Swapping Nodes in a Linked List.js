@@ -12,23 +12,21 @@ Use slow and fast pointers to locate a node n steps from end
 var swapNodes = function(head, k) {
     let slow = head,
         fast = head,
-        firstNode = null,
-        prevToFirstNode = null,
-        secondNode = null,
-        prevToSecondNode = null;
+        firstnode = null;
+    //Move fast k steps ahead
     while(k > 1){
-        prevToFirstNode = fast;
-        fast = fast.next;
-        k--;
+        fast = fast.next
+        k--
     }
-    firstNode = fast;
+    firstnode = fast; //this is the firstNode to be swapped
+    //Find the nth node from last
     while(fast.next){
-        prevToSecondNode = slow;
-        slow = slow.next;
-        fast = fast.next;
+        slow = slow.next
+        fast = fast.next
     }
-    let t = firstNode.val;
-    firstNode.val = slow.val;
-    slow.val = t;
+    //swap the values
+    let temp = slow.val
+        slow.val = firstnode.val
+        firstnode.val = temp
     return head;
 };
