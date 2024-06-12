@@ -2,7 +2,7 @@
  * https://leetcode.com/problems/minimum-depth-of-binary-tree/
  */
 
- /**
+/**
  const maxDepth = (root)=>{
     if(!root){
         return 0;
@@ -16,14 +16,25 @@ This code will not work here
 Test case: [2,null,3,null,4,null,5,null,6]
   */
 
-var minDepth = function(root) {
-    if(!root){
-        return 0;
-    }else if(!root.left){
-        return minDepth(root.right) + 1;
-    }else if(!root.right){
-        return minDepth(root.left) + 1;
-    }else{
-        return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+//if left not present then return right node
+
+var minDepth = function (root) {
+  if (!root) {
+    return 0;
+  }
+  let min = +Infinity;
+  const dfs = (node, count) => {
+    if (!node) {
+      return;
     }
+    if (!node.left && !node.right) {
+      if (count < min) {
+        min = count;
+      }
+    }
+    dfs(node.left, count + 1);
+    dfs(node.right, count + 1);
+  };
+  dfs(root, 1);
+  return min;
 };
