@@ -3,7 +3,6 @@
  */
 
 //Use preorder traversal because process root first then traverse left
-//Pre-order is top down approach
 
 /**
     Using addition
@@ -25,8 +24,9 @@ var hasPathSum = function (root, targetSum) {
 };
 
 /**
-        using subtraction
-     */
+  Using subtraction
+  We have to check for either left path or right path, that is why take ||
+*/
 var hasPathSum = function (root, targetSum) {
   const dfs = (node, sum) => {
     if (!node) {
