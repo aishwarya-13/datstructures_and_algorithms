@@ -2,6 +2,21 @@
  * https://leetcode.com/problems/same-tree/
  */
 
+/**
+ Bottom up
+ */
+var isSameTree = function (p, q) {
+  if (!p && !q) {
+    return true;
+  }
+  if ((!p && q) || (!q && p) || p.val !== q.val) {
+    return false;
+  }
+  const isLeftSame = isSameTree(p.left, q.left);
+  const isRightSame = isSameTree(p.right, q.right);
+  return isLeftSame && isRightSame;
+};
+
 var isSameTree = function (p, q) {
   const dfs = (treeNode1, treeNode2) => {
     /**
