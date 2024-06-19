@@ -3,24 +3,25 @@
  * https://leetcode.com/problems/minimum-distance-between-bst-nodes/
  */
 
-var minDiffInBST = function (root) {
-  let result = Infinity;
-  let prev = Infinity;
+/**
+ Since this is a BST, in-order traversal will give the values is sorted order
+ we need prev and current value to take difference.
+  */
+var getMinimumDifference = function (root) {
+  let min = +Infinity,
+    prev = +Infinity;
   const dfs = (node) => {
     if (!node) {
       return;
     }
     dfs(node.left);
-    console.log("node", node.val, "prev", prev);
-    let diff = Math.abs(prev - node.val);
-    if (diff < result) {
-      result = diff;
-    }
+    let diff = Math.abs(node.val - prev);
     prev = node.val;
+    min = Math.min(min, diff);
     dfs(node.right);
   };
   dfs(root);
-  return result;
+  return min;
 };
 
 const getMinimumDifference = (root) => {
