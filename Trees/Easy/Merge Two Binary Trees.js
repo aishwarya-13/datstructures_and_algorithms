@@ -4,6 +4,28 @@
 
 /**
     Optimized "self solution"
+    No need to use dfs function
+ */
+var mergeTrees = function (root1, root2) {
+  if (!root1 && !root2) {
+    return null;
+  }
+  if (!root1) {
+    //if root1 is null, then return whole node2(that will include root2's subtree, be it null or has some left and right nodes)
+    return root2;
+  }
+  if (!root2) {
+    //if root2 is null, then return whole node1(that will include root1's subtree, be it null or has some left and right nodes)
+    return root1;
+  }
+  const newNode = new TreeNode(root1.val + root2.val);
+  newNode.left = mergeTrees(root1.left, root2.left);
+  newNode.right = mergeTrees(root1.right, root2.right);
+  return newNode;
+};
+
+/**
+    Optimized "self solution"
     In self solution, I worried about the non-null node when other node was null
     But, I dont have to worry about that -> 
     When one node is null, just return the other node (that will include the node's subtree,
@@ -50,20 +72,4 @@ var mergeTrees = function (root1, root2) {
     return newNode;
   };
   return dfs(root1, root2);
-};
-
-var mergeTrees = function (root1, root2) {
-  if (!root1 && !root2) {
-    return null;
-  }
-  if (!root1) {
-    return root2;
-  }
-  if (!root2) {
-    return root1;
-  }
-  const newNode = new TreeNode(root1.val + root2.val);
-  newNode.left = mergeTrees(root1.left, root2.left);
-  newNode.right = mergeTrees(root1.right, root2.right);
-  return newNode;
 };
