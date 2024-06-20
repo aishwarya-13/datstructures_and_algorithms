@@ -4,14 +4,14 @@
 
 //Self solved - Brute force
 var isCousins = function (root, x, y) {
-  const xHeight = calculateHeight(root, x);
+  const xHeight = calculateHeightAndParent(root, x);
   console.log("xHeight", xHeight[0], "xParent", xHeight[1]);
-  const yHeight = calculateHeight(root, y);
+  const yHeight = calculateHeightAndParent(root, y);
   console.log("yHeight", yHeight[0], "yParent", yHeight[1]);
   return xHeight[0] === yHeight[0] && xHeight[1] !== yHeight[1];
 };
 
-const calculateHeight = (node, toBeFound) => {
+const calculateHeightAndParent = (node, toBeFound) => {
   let result = [0, null]; //[height, parent]
   let parent = null;
   const dfs = (node, count) => {
