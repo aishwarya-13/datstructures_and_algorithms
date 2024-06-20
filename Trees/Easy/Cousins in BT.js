@@ -1,6 +1,29 @@
 /**
  * https://leetcode.com/problems/cousins-in-binary-tree/description/
  */
+/**
+ More optimized solution of my solution
+ What is optimized? Calculating parent and reduced number of lines
+  */
+var isCousins = function (root, x, y) {
+  const calDepthAndParent = (node, depth, toBeFound, parent) => {
+    if (!node) {
+      return null;
+    }
+    if (node.val === toBeFound) {
+      return [depth, parent];
+    }
+    let left = calDepthAndParent(node.left, depth + 1, toBeFound, node);
+    let right = calDepthAndParent(node.right, depth + 1, toBeFound, node);
+    return left || right;
+  };
+  const [xDepth, xParent] = calDepthAndParent(root, 0, x);
+  const [yDepth, yParent] = calDepthAndParent(root, 0, y);
+
+  return xDepth === yDepth && xParent !== yParent;
+};
+
+///////
 
 //Self solved - Brute force
 var isCousins = function (root, x, y) {
