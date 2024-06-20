@@ -1,6 +1,41 @@
 /**
  * https://leetcode.com/problems/cousins-in-binary-tree/description/
  */
+
+/**
+    One iteration - Using map
+  */
+var isCousins = function (root, x, y) {
+  let map = {};
+  const calHeightAndDepth = (node, depth, parent) => {
+    if (!node) {
+      return false;
+    }
+    if (node.val === x) {
+      map[x] = [depth, parent];
+      if (map[y] !== undefined) {
+        //If y params are calculated before then see if x and y are cousins
+        let yDepth = map[y][0],
+          yParent = map[y][1];
+        return depth === yDepth && parent !== yParent;
+      }
+    }
+    if (node.val === y) {
+      map[y] = [depth, parent];
+      if (map[x] !== undefined) {
+        //If x params are calculated before then see if x and y are cousins
+        let xDepth = map[x][0],
+          xParent = map[x][1];
+        return depth === xDepth && parent !== xParent;
+      }
+    }
+    const left = calHeightAndDepth(node.left, depth + 1, node);
+    const right = calHeightAndDepth(node.right, depth + 1, node);
+    return left || right;
+  };
+  return calHeightAndDepth(root, 0);
+};
+
 /**
  More optimized solution of my solution
  What is optimized? Calculating parent and reduced number of lines
