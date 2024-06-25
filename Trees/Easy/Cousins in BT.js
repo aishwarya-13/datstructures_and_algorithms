@@ -3,6 +3,42 @@
  */
 
 /**
+    Using map and single iteration
+    1. Use map to store values
+    2. When traversing, if x node is found, then check if map has y value.
+        If yes, then check if x and y are cousins
+        If no, then store x value in map
+    3. When traversing, if y node is found, then check if map has x value.
+        If yes, then check if x and y are cousins
+        If no, then store y value in map
+    4. Why OR condition, because cousins can be found either on left subtree somewhere or right subtree
+  */
+var isCousins = function (root, x, y) {
+  let map = {};
+  const dfs = (node, depth, parent) => {
+    if (!node) {
+      return false;
+    }
+    if (node.val === x) {
+      if (map[y] !== undefined) {
+        const [yDepth, yParent] = map[y];
+        return yDepth === depth && yParent !== parent;
+      }
+      map[x] = [depth, parent];
+    }
+    if (node.val === y) {
+      if (map[y] !== undefined) {
+        const [xDepth, xParent] = map[x];
+        return xDepth === depth && xParent !== parent;
+      }
+      map[y] = [depth, parent];
+    }
+    return dfs(node.left, depth + 1, node) || dfs(node.right, depth + 1, node);
+  };
+  return dfs(root, 0, null);
+};
+
+/**
     One iteration - Using map
   */
 var isCousins = function (root, x, y) {
