@@ -2,6 +2,30 @@
  * https://leetcode.com/problems/merge-two-binary-trees/
  */
 
+//Learning - Why cannot use global variable?
+var mergeTrees = function (root1, root2) {
+  //cannot use global variable here because whenever new node is created the result will be overridden
+  let result = null;
+  const dfs = (node1, node2) => {
+    if (!node1 && !node2) {
+      return null;
+    }
+    if (!node1 && node2) {
+      return node2;
+    }
+    if (!node2 && node1) {
+      return node1;
+    }
+    result = new TreeNode(node1.val + node2.val);
+    result.left = dfs(node1.left, node2.left);
+    result.right = dfs(node1.right, node2.right);
+    console.log("result", result);
+    return result;
+  };
+  dfs(root1, root2);
+  return result;
+};
+
 /**
     Not using third variable - Self
  */
