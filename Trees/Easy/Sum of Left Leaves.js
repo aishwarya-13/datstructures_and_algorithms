@@ -2,12 +2,23 @@
  * https://leetcode.com/problems/sum-of-left-leaves/
  */
 
-var sumOfLeftLeaves = function(root) {
-    if(!root){
-        return 0;
+/**
+    Self: Top down: Using an external variable
+  */
+var sumOfLeftLeaves = function (root) {
+  let result = 0;
+  const dfs = (node, isLeft) => {
+    if (!node) {
+      return;
     }
-    const left = sumOfLeftLeaves(root.left);
-    return left + root.val;
+    if (!node.left && !node.right && isLeft) {
+      result += node.val;
+    }
+    dfs(node.left, true);
+    dfs(node.right, false);
+  };
+  dfs(root, false);
+  return result;
 };
 
 /**
