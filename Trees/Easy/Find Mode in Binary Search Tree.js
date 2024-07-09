@@ -10,30 +10,60 @@ To achieve constant space, during the traverse we only store current node info (
 if equal, we update current value count and maxCount
 if not, reset current count to 1.
 **/
-const findMode = (root)=>{
-    let mode = [],
-        max = -Infinity,
-        count = 0,
-        val = null;
-    const dfs = (root)=>{
-        if(!root){
-            return;
-        }
-        dfs(root.left);
-        if(root.val === val){
-            count+= 1;
-        }else{
-            count = 1;
-            val = root.val;
-        }
-        if(count > max){
-            mode = [root.val];
-            max = count;
-        }else if(count === max){
-            mode.push(root.val);
-        }
-        dfs(root.right);
+var findMode = function (root) {
+  let count = 0,
+    max = -Infinity,
+    result = [],
+    prev = null;
+  const dfs = (node) => {
+    if (!node) {
+      return;
     }
-    dfs(root);
-    return mode;
+    dfs(node.left);
+    if (node.val === prev) {
+      count += 1;
+    } else {
+      prev = node.val; //store prev value
+      count = 1; //reset first occurrence
+    }
+    if (count > max) {
+      //found first mode
+      result = [node.val];
+      max = count;
+    } else if (count === max) {
+      //found another mode
+      result.push(node.val);
+    }
+    dfs(node.right);
+  };
+  dfs(root);
+  return result;
+};
+
+/**
+ Using space
+  */
+var findModee = function (root) {
+  let map = {}, //to track frequencies of occurrence of elements
+    max = 0; //to track max of freq of occurrennce of elements
+  let result = [];
+  const dfs = (node) => {
+    if (!node) {
+      return;
+    }
+    if (map[node.val] === undefined) {
+      map[node.val] = 0;
+    }
+    map[node.val]++;
+    max = Math.max(max, map[node.val]);
+    dfs(node.left);
+    dfs(node.right);
+  };
+  dfs(root);
+  for (let i in map) {
+    if (map[i] === max) {
+      result.push(i);
+    }
+  }
+  return result;
 };
