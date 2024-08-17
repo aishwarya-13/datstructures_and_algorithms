@@ -2,6 +2,23 @@
  * https://leetcode.com/problems/path-sum/
  */
 
+var hasPathSum = function (root, targetSum) {
+  const dfs = (node, nodeSum) => {
+    if (!node) {
+      return false;
+    }
+    nodeSum -= node.val; //subtracting at this line is necessary not at line 27
+    if (!node.left && !node.right) {
+      return nodeSum === 0;
+    }
+    //subtracting at this line 27 dfs(node.left, nodeSum - node.val) will not work because when it reaches leaf node,
+    //the leaf node val - nodeSum wont be done until line 27
+    //So, there will be return at line 22 without calculating  leaf node val - nodeSum
+    return dfs(node.left, nodeSum) || dfs(node.right, nodeSum);
+  };
+  return dfs(root, targetSum);
+};
+
 //Use preorder traversal because process root first then traverse left
 
 /**
