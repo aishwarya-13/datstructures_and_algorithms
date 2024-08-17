@@ -7,13 +7,13 @@ var hasPathSum = function (root, targetSum) {
     if (!node) {
       return false;
     }
-    nodeSum -= node.val; //subtracting at this line is necessary not at line 27
+    nodeSum -= node.val; //subtracting at this line is necessary not at line 17
     if (!node.left && !node.right) {
       return nodeSum === 0;
     }
-    //subtracting at this line 27 dfs(node.left, nodeSum - node.val) will not work because when it reaches leaf node,
-    //the leaf node val - nodeSum wont be done until line 27
-    //So, there will be return at line 22 without calculating  leaf node val - nodeSum
+    //subtracting at this line 17 dfs(node.left, nodeSum - node.val) will not work because when it reaches leaf node,
+    //the leaf node val - nodeSum wont be done until line 17
+    //So, there will be return at line 12 without calculating  leaf node val - nodeSum
     return dfs(node.left, nodeSum) || dfs(node.right, nodeSum);
   };
   return dfs(root, targetSum);
