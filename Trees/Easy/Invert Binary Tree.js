@@ -3,16 +3,21 @@
  */
 
 /**
- Self: Using extra variable
+ We need to swap left nodes with right nodes
   */
+
 var invertTree = function (root) {
-  if (!root) {
+  if (root === null) {
     return null;
   }
-  const newNode = new TreeNode(root.val);
-  newNode.left = invertTree(root.right);
-  newNode.right = invertTree(root.left);
-  return newNode;
+  //swap
+  let t = root.left;
+  root.left = root.right;
+  root.right = t;
+  //recursive calls
+  invertTree(root.left);
+  invertTree(root.right);
+  return root;
 };
 
 /**
@@ -32,19 +37,14 @@ var invertTree = function (root) {
 };
 
 /**
- We need to swap left nodes with right nodes
+ Self: Using extra variable
   */
-
 var invertTree = function (root) {
-  if (root === null) {
+  if (!root) {
     return null;
   }
-  //swap
-  let t = root.left;
-  root.left = root.right;
-  root.right = t;
-  //recursive calls
-  invertTree(root.left);
-  invertTree(root.right);
-  return root;
+  const newNode = new TreeNode(root.val);
+  newNode.left = invertTree(root.right);
+  newNode.right = invertTree(root.left);
+  return newNode;
 };
