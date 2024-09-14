@@ -96,34 +96,31 @@ var isCousins = function (root, x, y) {
 
 ///////
 
-//Self solved - Brute force
+//Self - Brute force
 var isCousins = function (root, x, y) {
-  const xHeight = calculateHeightAndParent(root, x);
-  console.log("xHeight", xHeight[0], "xParent", xHeight[1]);
-  const yHeight = calculateHeightAndParent(root, y);
-  console.log("yHeight", yHeight[0], "yParent", yHeight[1]);
-  return xHeight[0] === yHeight[0] && xHeight[1] !== yHeight[1];
+  const xParams = calculateHeightAndParent(root, x);
+  console.log("xParams", xParams);
+  const yParams = calculateHeightAndParent(root, y);
+  console.log("yParams", yParams);
+  return xParams[0] === yParams[0] && xParams[1] !== yParams[1];
 };
 
 const calculateHeightAndParent = (node, toBeFound) => {
   let result = [0, null]; //[height, parent]
-  let parent = null;
-  const dfs = (node, count) => {
+  const dfs = (node, height) => {
     if (!node) {
       return;
     }
-    if (node.left && node.left.val === toBeFound) {
-      parent = node.val;
+    if (node && node.left && node.left.val === toBeFound) {
+      result = [height + 1, node];
+      return;
     }
-    if (node.right && node.right.val === toBeFound) {
-      parent = node.val;
+    if (node && node.right && node.right.val === toBeFound) {
+      result = [height + 1, node];
+      return;
     }
-    if (node.val === toBeFound) {
-      result = [count, parent];
-      parent = null;
-    }
-    dfs(node.left, count + 1);
-    dfs(node.right, count + 1);
+    dfs(node.left, height + 1);
+    dfs(node.right, height + 1);
   };
   dfs(node, 0);
   return result;
