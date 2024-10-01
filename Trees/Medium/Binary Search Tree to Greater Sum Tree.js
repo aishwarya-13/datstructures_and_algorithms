@@ -16,8 +16,8 @@ var bstToGst = function (root) {
       return;
     }
     dfs(node.right);
-    nodeSum += node.val;
-    node.val = nodeSum;
+    nodeSum += node.val; // add sum
+    node.val = nodeSum; //replace current node's val with result sum
     dfs(node.left);
   };
   dfs(root);

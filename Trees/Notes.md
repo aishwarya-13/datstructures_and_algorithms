@@ -15,3 +15,10 @@ dfs(node.right)
 dfs(root)
 return result
 };
+
+## Things to keep in mind about BST
+
+1. In BST, the right side of node contains value > node and left side contains value < than node
+2. In-order traversal of BST gives a sorted array in ascending order (Left -> root -> right)
+3. Reverse in-order trversal of BST gives sorted array in descending order (Root -> Left -> right)
+   https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/description/
