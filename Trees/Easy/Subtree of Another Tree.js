@@ -11,9 +11,12 @@ var isSubtree = function (root, subRoot) {
     return false;
   }
   /**
-   * My mistake: i did return isSameTree(root, subRoot). Due to which it didnt check for any node equal to subroot's node after its first encounter
-   * What is same node val is present further down in the tree?
-   * Thats why only return true when isSameTree(root, subRoot) ahs returned true
+   * My mistake: i did return isSameTree(root, subRoot).
+   * Due to which it didnt check for any node equal to subroot's node after its first encounter
+   * What if same node val is present further down in the tree?
+   * Thats why only return true when isSameTree(root, subRoot) has returned true
+   * Consider the case:root = [1,1] and subRoot = [1]
+   * In this case, it wont check for the seconde node "1". It will return false from first node "1"
    */
   if (root.val === subRoot.val) {
     if (isSameTree(root, subRoot)) {
