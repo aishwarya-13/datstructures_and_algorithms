@@ -11,6 +11,42 @@ if equal, we update current value count and maxCount
 if not, reset current count to 1.
 **/
 var findMode = function (root) {
+  let maxFreq = 0,
+    count = 0,
+    prev = null,
+    curr = null,
+    result = [];
+  const dfs = (node) => {
+    if (!node) {
+      return;
+    }
+    dfs(node.left);
+    console.log("node", node.val);
+    prev = curr;
+    curr = node.val;
+    console.log("prev", prev, "curr", curr);
+    curr === prev ? (count += 1) : (count = 1);
+    if (count > maxFreq) {
+      result = [curr];
+      maxFreq = count;
+    } else if (count === maxFreq) {
+      result.push(curr);
+    }
+    dfs(node.right);
+  };
+  dfs(root);
+  return result;
+};
+
+/**
+ * Inorder traversal of a BST will return a sorted array
+Using constant space
+Because it is a BST, we could treat it as an ascending sorted array when we do inorder traverse.
+To achieve constant space, during the traverse we only store current node info (value and count) and compare current node value to previous one:
+if equal, we update current value count and maxCount
+if not, reset current count to 1.
+**/
+var findMode = function (root) {
   let count = 0,
     max = -Infinity,
     result = [],
