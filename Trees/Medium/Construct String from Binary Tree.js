@@ -2,6 +2,26 @@
  *https://leetcode.com/problems/construct-string-from-binary-tree/description/
  */
 
+//Use this solution
+var tree2str = function (root) {
+  if (!root) {
+    return "";
+  }
+  const left = tree2str(root.left);
+  const right = tree2str(root.right);
+
+  if (left && right) {
+    return `${root.val}(${left})(${right})`;
+  } else if (!left && right) {
+    return `${root.val}()(${right})`;
+  } else if (left && !right) {
+    return `${root.val}(${left})`;
+  } else if (!left && !right) {
+    //if leaf node then return only the node value
+    return `${root.val}`;
+  }
+};
+
 var tree2str = function (root) {
   let result = "";
   const dfs = (node) => {
