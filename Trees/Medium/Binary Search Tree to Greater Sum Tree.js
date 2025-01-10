@@ -23,3 +23,40 @@ var bstToGst = function (root) {
   dfs(root);
   return root;
 };
+
+/**
+    Brute force approach
+ */
+var bstToGst = function (root) {
+  const arr = inorder(root).reverse();
+  console.log("arr", arr);
+  replaceValues(root, arr);
+  return root;
+};
+
+const inorder = (node) => {
+  if (!node) {
+    return [];
+  }
+  const left = inorder(node.left);
+  const right = inorder(node.right);
+  return [...left, node.val, ...right];
+};
+
+const replaceValues = (node, arr) => {
+  console.log("wew", arr);
+  if (!node) {
+    return;
+  }
+  replaceValues(node.left, arr);
+  replaceValues(node.right, arr);
+  let nodeSum = 0;
+  for (let ele of arr) {
+    if (ele > node.val) {
+      nodeSum += ele;
+    } else {
+      break;
+    }
+  }
+  node.val += nodeSum;
+};
