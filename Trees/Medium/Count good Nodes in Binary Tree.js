@@ -1,6 +1,9 @@
 /**]
  * https://leetcode.com/problems/count-good-nodes-in-binary-tree/description/
  */
+
+//Self
+
 /**
     IMP: You used array in the previous solution. This is an improvement over previous solution to use a variable
 

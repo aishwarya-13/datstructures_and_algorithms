@@ -1,7 +1,7 @@
 /**
  * https://leetcode.com/problems/path-sum-ii/description/
  */
-
+//Self
 var pathSum = function (root, targetSum) {
   const result = [];
   const dfs = (node, sum, nodeArr) => {
