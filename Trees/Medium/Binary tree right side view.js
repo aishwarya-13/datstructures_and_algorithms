@@ -1,6 +1,28 @@
 /**
  * https://leetcode.com/problems/binary-tree-right-side-view/description/
  */
+
+//Using recursion
+//Using solution for Level order traversal using recursion
+//Only difference here would be to overwrite the index/level if right node is present
+
+var rightSideView = function (root) {
+  if (!root) {
+    return [];
+  }
+  const result = [];
+  const dfs = (node, level) => {
+    if (!node) {
+      return;
+    }
+    result[level] = node.val;
+    dfs(node.left, level + 1);
+    dfs(node.right, level + 1);
+  };
+  dfs(root, 0);
+  return result;
+};
+
 /**
  If i == levelLength - 1, then it's the last node in the current level, push it to rightsize list.
  
