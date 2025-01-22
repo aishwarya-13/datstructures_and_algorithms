@@ -1,6 +1,28 @@
 //https://leetcode.com/problems/validate-binary-search-tree/description/
 
 /**
+    Self
+  */
+var isValidBST = function (root) {
+  let prev = null,
+    result = true;
+  const inorder = (node) => {
+    if (!node) {
+      return;
+    }
+    inorder(node.left);
+    if (prev != null && prev >= node.val) {
+      result = false;
+      return;
+    }
+    prev = node.val;
+    inorder(node.right);
+  };
+  inorder(root);
+  return result;
+};
+
+/**
  Self - improved: Without using extra variable
  In-order traversal gives a sorted array
  So check prev and curr values
