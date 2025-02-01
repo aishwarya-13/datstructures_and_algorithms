@@ -2,6 +2,24 @@
  * https://leetcode.com/problems/invert-binary-tree/
  */
 
+/**
+ * 
+  What I learnt here? 
+  How to create a new tree 
+ */
+//Create a new tree
+var invertTree = function (root) {
+  if (!root) {
+    return null;
+  }
+  const newNode = new TreeNode(
+    root.val,
+    invertTree(root.right),
+    invertTree(root.left)
+  );
+  return newNode;
+};
+
 var invertTree = function (root) {
   if (!root) {
     return null;
