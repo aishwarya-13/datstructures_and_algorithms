@@ -1,27 +1,35 @@
 /**
- * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
- */
+ Use this solution
+ Two pointers approach:
+ Sub-category: Slow and fast pointer. Here i moves ahead of j to give some info to j
+ i to iterate array
+ j as placeholder for unique element
 
-/**
-    Use two pointers slow and fast
-    Move fast pointer ahead until its value is same as slow pointers
-    When value at fast pointer number changed
-    1]move slow ahead
-    2]update slow with fast pointers value
-    Iterate till fast pointer reaches the end of the array
+ Time: O(N)
+ Space: O(1)
+  */
+var removeDuplicates = function (nums) {
+  let i = 0, //to iterate the array
+    j = 0; //placeholder for unique elements
+  while (i < nums.length) {
+    if (i !== j && nums[i] !== nums[j]) {
+      j++;
+      [nums[i], nums[j]] = [nums[j], nums[i]];
+    }
+    i++;
+  }
+  return j + 1;
+};
 
-    Time: O(N)
-    Space:O(1)
- */
-    var removeDuplicates = function(nums) {
-        let slow=0,
-            fast=0;
-        while(fast < nums.length){
-            if(nums[slow] !== nums[fast]){
-                slow++;
-                nums[slow] = nums[fast]
-            }
-            fast++
-        }
-        return slow + 1;
-    };
+var removeDuplicates = function (nums) {
+  let i = 1,
+    j = 0;
+  while (i < nums.length) {
+    if (nums[i] != nums[j]) {
+      j++;
+      [nums[i], nums[j]] = [nums[j], nums[i]];
+    }
+    i++;
+  }
+  return j + 1;
+};
