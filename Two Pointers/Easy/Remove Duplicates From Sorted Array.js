@@ -5,6 +5,10 @@
  i to iterate array
  j as placeholder for unique element
 
+Move i ahead until val at i and j are not equal 
+ then move j ahead to make space for the unique element 
+ then swap ith and jth element
+
  Time: O(N)
  Space: O(1)
   */
