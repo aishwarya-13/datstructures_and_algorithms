@@ -3,50 +3,82 @@
  */
 
 /**
-    Without using regular expression
- */
-var isPalindrome = function(s) {
-    let left = 0,
-        right = s.length - 1,
-        str = s.toLowerCase();
-    while(left <= right){
-        if(isChar(str[left]) && isChar(str[right])){
-            if(str[left] === str[right]){
-                left++;
-                right--;
-            }else{
-                return false
-            }
-        }else if(!isChar(str[left]) && isChar(str[right])){
-            left++
-        }else{
-            right--
-        }
+    Time: O(N)
+    replace() takes O(N)
+    toLowerCase() takes O(N)
+
+    Space: O(N)
+    replace takes O(N)
+    toLowerCase takes O(N)
+  */
+var isPalindrome = function (s) {
+  let str = s.replace(/[^0-9a-z]/gi, "");
+  console.log("str", str);
+
+  if (!str) return true;
+
+  str = str.toLowerCase();
+
+  let left = 0,
+    right = str.length - 1;
+  while (left <= right) {
+    if (str[left] !== str[right]) {
+      return false;
     }
-    return true
+    left++;
+    right--;
+  }
+  return true;
 };
 
-const isChar = (char)=>{
-    if((char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122) || //its an alphabet
-        (char.charCodeAt(0) >= 48 && char.charCodeAt(0) <= 57)){//its a number
-        return true
+/**
+    Without using regular expression
+ */
+var isPalindrome = function (s) {
+  let left = 0,
+    right = s.length - 1,
+    str = s.toLowerCase();
+  while (left <= right) {
+    if (isChar(str[left]) && isChar(str[right])) {
+      if (str[left] === str[right]) {
+        left++;
+        right--;
+      } else {
+        return false;
+      }
+    } else if (!isChar(str[left]) && isChar(str[right])) {
+      left++;
+    } else {
+      right--;
     }
-    return false
-}
- /**
+  }
+  return true;
+};
+
+const isChar = (char) => {
+  if (
+    (char.charCodeAt(0) >= 97 && char.charCodeAt(0) <= 122) || //its an alphabet
+    (char.charCodeAt(0) >= 48 && char.charCodeAt(0) <= 57)
+  ) {
+    //its a number
+    return true;
+  }
+  return false;
+};
+/**
     Time: O(N)
     Space: O(N) -> to store modified string ???
   */
-    var isPalindrome = function(s) {
-      let str = s.replace(/[^0-9a-z]/gi, '').toLowerCase(),
-          left = 0,
-          right = str.length - 1;
-      while(left <= right){
-          if(str[left] !== str[right]){
-              return false;
-          }
-          left++;
-          right--;
-      }
-      return true;
-  };
+var isPalindrome = function (s) {
+  let str = s.replace(/[^0-9a-z]/gi, "").toLowerCase(),
+    left = 0,
+    right = str.length - 1;
+  while (left <= right) {
+    if (str[left] !== str[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+  return true;
+};
