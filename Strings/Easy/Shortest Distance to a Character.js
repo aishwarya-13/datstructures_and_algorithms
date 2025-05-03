@@ -3,7 +3,8 @@
  */
 
 /**
-Keep a variable to track the latest index of char. Calculate the distance by charIndex - i. Initialise charIndex to +Infinity (because we want min)
+Keep a variable to track the latest index of char.
+Calculate the distance by charIndex - i. Initialise charIndex to +Infinity (because we want min)
 2 passes
 1]In 1st pass calculate the distance from left to right
 2] i) In 2nd pass calculate the distance from right to left.
@@ -15,21 +16,21 @@ We need to to keep track of char index while iterating from left to right and fr
  Time:O(N)
  Space:O(1)
 **/
-var shortestToChar = function(s, c) {
+var shortestToChar = function (s, c) {
   let charIndex = +Infinity,
-      result = [];
-  for(let i=0; i<s.length; i++){
-      if(s[i] === c){
-          charIndex = i
-      }
-      result[i] = Math.abs(i - charIndex)
+    result = [];
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === c) {
+      charIndex = i;
+    }
+    result[i] = Math.abs(i - charIndex);
   }
   charIndex = +Infinity;
-  for(let i=s.length-1; i>=0; i--){
-      if(s[i] === c){
-          charIndex = i
-      }
-      result[i] = Math.min(Math.abs(i - charIndex), result[i])
+  for (let i = s.length - 1; i >= 0; i--) {
+    if (s[i] === c) {
+      charIndex = i;
+    }
+    result[i] = Math.min(Math.abs(i - charIndex), result[i]);
   }
-  return result
+  return result;
 };
