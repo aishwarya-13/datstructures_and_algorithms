@@ -3,18 +3,26 @@
  */
 
 /**
- * Place one pointer at start and other at end
- * Find min height and calculate the area
- * Increment/ Decrement that pointer whose height is smaller because we want max area
- */
- //Time: O(N), Space: O(1)
- var maxArea = function(height) {
-  let result = -Infinity,
-      left = 0,
-      right = height.length - 1;
-  while(left < right){
-      result = Math.max(result, (Math.min(height[left], height[right]) * (right - left)))
-      height[left] < height[right] ? left++ : right--
+ Place one pointer at start and one at end
+ Get distance between them and calculate water capacity
+ Move that pointer who has less height
+
+ Time: O(N)
+ Space: O(1)
+
+ Note: Brute force will give Time Limit Exceeded error
+  */
+var maxArea = function (height) {
+  let water = 0,
+    left = 0,
+    right = height.length - 1;
+  while (left < right) {
+    let distance = right - left,
+      waterCollected = distance * Math.min(height[left], height[right]);
+    //record max water
+    water = Math.max(water, waterCollected);
+    //move the pointer that points to lower height
+    height[left] < height[right] ? left++ : right--;
   }
-  return result
+  return water;
 };
