@@ -2,6 +2,8 @@
  * https://leetcode.com/problems/longest-palindromic-substring/description/
  */
 
+//Note: Brute force approach where a palindrome is checked for each char expanding from left to right gives time limit exceeded error
+
 /**
     The idea here is to check each char for a palindrome.
     Instead of checking from start of a char and then expanding to left of the string, expand from center.
