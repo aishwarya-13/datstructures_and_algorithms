@@ -1,6 +1,7 @@
 /**
  * https://leetcode.com/problems/contains-duplicate-ii/description/
  */
+//Solution using map also exists
 
 /**
 This is a sliding window problem because, the given criteria is (abs(i - j) <= k) So, here k defines the window.
