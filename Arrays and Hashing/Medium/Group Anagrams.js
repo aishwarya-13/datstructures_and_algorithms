@@ -9,19 +9,19 @@
     Time: O(WlogW * N) W - length of word and N - length of array
     Space: O(W*N)
  */
-    var groupAnagrams = function(strs) {
-      let map = {},
-          result = []
-      for(let str of strs){
-          let sorted = str.split('').sort()
-          if(map[sorted] === undefined){
-              map[sorted] = [str]
-          }else{
-              map[sorted].push(str)
-          }
-      }
-      for(let str in map){
-          result.push(map[str])
-      }
-      return result
-  };
+var groupAnagrams = function (strs) {
+  let map = {},
+    result = [];
+  for (let str of strs) {
+    let sorted = str.split("").sort();
+    if (map[sorted] === undefined) {
+      map[sorted] = [str];
+    } else {
+      map[sorted].push(str);
+    }
+  }
+  for (let str in map) {
+    result.push(map[str]);
+  }
+  return result;
+};
