@@ -25,18 +25,15 @@ var productExceptSelf = function (nums) {
   mul = 1;
   for (let i = nums.length - 1; i >= 0; i--) {
     rightSufixproduct[i] = mul;
+    //This line is improvement over the 3rd loop (while loop)
+    result[i] = leftSufixproduct[i] * rightSufixproduct[i];
     mul *= nums[i];
   }
-  console.log(
-    "leftSufixproduct",
-    leftSufixproduct,
-    "rightSufixproduct",
-    rightSufixproduct
-  );
-  let i = 0;
-  while (i < nums.length) {
-    result[i] = leftSufixproduct[i] * rightSufixproduct[i];
-    i++;
-  }
+
+  // let i = 0;
+  // while (i < nums.length) {
+  //   result[i] = leftSufixproduct[i] * rightSufixproduct[i];
+  //   i++;
+  // }
   return result;
 };
