@@ -3,6 +3,65 @@
 /**
 Aishwarya
 
+Approach 2: Escaping
+Delimiter /:
+Iterate over each string char by char
+When iterating a string, if a char is / then add another / to escape it
+After all chars in a string are processed, add /:
+
+Decoding
+1. If a char is /, check next char
+    a. If next char is also / (//), it means we need to escape it bz original string had a /
+    So add a / and move next
+    b. If next char is : (/:) it is our delimiter
+
+N - length of array
+k - length of each word
+Time: O(N*k)
+Space: O(N*K)
+ */
+
+var encode = function (strs) {
+  let encodedStr = "";
+  for (let str of strs) {
+    for (let char of str) {
+      if (char === "/") {
+        encodedStr += "/";
+      }
+      encodedStr += char;
+    }
+    encodedStr += "/:";
+  }
+  console.log(encodedStr);
+  return encodedStr;
+};
+
+var decode = function (s) {
+  let result = [],
+    str = "";
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "/" && s[i + 1] === "/") {
+      str += "/";
+      i++;
+    } else if (s[i] === "/" && s[i + 1] === ":") {
+      i++;
+      result.push(str);
+      str = "";
+    } else {
+      str += s[i];
+    }
+  }
+  return result;
+};
+
+/**
+ * Your functions will be called as such:
+ * decode(encode(strs));
+ */
+
+/**
+Aishwarya
+
 Approach 1: Using Unicode char encoding (non-ASCII delimiter)
 In the problem constraint it is mentioned that characters are ASCII characters.
 That is why we can use Unicode char for encoding.
@@ -21,12 +80,6 @@ Space: O(N*k)
 
  */
 
-/**
- * Encodes a list of strings to a single string.
- *
- * @param {string[]} strs
- * @return {string}
- */
 var encode = function (strs) {
   let enodedStr = "";
   for (let str of strs) {
@@ -36,12 +89,6 @@ var encode = function (strs) {
   return enodedStr;
 };
 
-/**
- * Decodes a single string to a list of strings.
- *
- * @param {string} s
- * @return {string[]}
- */
 var decode = function (s) {
   let result = s.split("π");
   result.pop();
