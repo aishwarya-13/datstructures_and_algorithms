@@ -2,6 +2,48 @@
  * https://leetcode.com/problems/valid-palindrome/
  */
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+Time: O(N)
+Space: O(1)
+ */
+var isPalindrome = function (s) {
+  let left = 0,
+    right = s.length - 1;
+  while (left <= right) {
+    const isLeftLetterOrDigit = isLetterOrDigit(s[left]),
+      isRightLetterOrDigit = isLetterOrDigit(s[right]);
+    if (isLeftLetterOrDigit && isRightLetterOrDigit) {
+      // convert to lowercase per character to avoid O(N) space
+      if (s[left].toLowerCase() !== s[right].toLowerCase()) {
+        return false;
+      }
+      left++;
+      right--;
+    } else {
+      if (!isLeftLetterOrDigit) {
+        left++;
+      }
+      if (!isRightLetterOrDigit) {
+        right--;
+      }
+    }
+  }
+  return true;
+};
+
+const isLetterOrDigit = (char) => {
+  const charcode = char.charCodeAt();
+  return (
+    (charcode >= "a".charCodeAt() && charcode <= "z".charCodeAt()) ||
+    (charcode >= "A".charCodeAt() && charcode <= "Z".charCodeAt()) ||
+    (charcode >= "0".charCodeAt() && charcode <= "9".charCodeAt())
+  );
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
     Time: O(N)
     replace() takes O(N)
@@ -30,6 +72,8 @@ var isPalindrome = function (s) {
   }
   return true;
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
     Without using regular expression
@@ -65,20 +109,26 @@ const isChar = (char) => {
   }
   return false;
 };
+
+////////////////////////////////////////////////////////////////////////////////
+
 /**
-    Time: O(N)
-    Space: O(N) -> to store modified string ???
-  */
+Time: O(N)
+Space: O(N)
+ */
 var isPalindrome = function (s) {
-  let str = s.replace(/[^0-9a-z]/gi, "").toLowerCase(),
-    left = 0,
+  let str = s.replace(/[^0-9a-z]/gi, ""); //Remove all characters from the string s that are not letters or digits.
+  let left = 0,
     right = str.length - 1;
   while (left <= right) {
-    if (str[left] !== str[right]) {
+    if (str[left].toLowerCase() === str[right].toLowerCase()) {
+      left++;
+      right--;
+    } else {
       return false;
     }
-    left++;
-    right--;
   }
   return true;
 };
+
+////////////////////////////////////////////////////////////////////////////////
