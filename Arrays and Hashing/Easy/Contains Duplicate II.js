@@ -22,3 +22,30 @@ var containsNearbyDuplicate = function (nums, k) {
   }
   return false;
 };
+
+/**
+ * Sliding Window approach
+ */
+
+/**
+ Time: O(N)
+ Space: O(N)
+  */
+var containsNearbyDuplicate = function (nums, k) {
+  let window = new Set(),
+    start = 0;
+  for (let end = 0; end < nums.length; end++) {
+    let windowSize = end - start;
+    if (windowSize > k) {
+      //first check if window size has been exceeded
+      window.delete(nums[start]);
+      start++;
+    }
+    if (window.has(nums[end])) {
+      //if current ele is in window then we have found the duplicate
+      return true;
+    }
+    window.add(nums[end]); //add in window
+  }
+  return false;
+};
