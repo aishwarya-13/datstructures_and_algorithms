@@ -4,7 +4,7 @@
 
 /**
 Aishwarya
-If current end time is >= next start time then person can attend current and next meeting
+If current end time is > next start time then person can attend current and next meeting
 **/
 var canAttendMeetings = function (intervals) {
   intervals.sort((a, b) => a[0] - b[0]);
